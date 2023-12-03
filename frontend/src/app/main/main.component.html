@@ -1,0 +1,67 @@
+<div class="main">
+  <app-graph></app-graph>
+  <div class="form">
+    <div class="x-values">
+      <div class="value-text">enter x</div>
+      <input type="text" pInputText [(ngModel)]="valueX" class="w-full" />
+      <p-slider
+        [(ngModel)]="valueX"
+        [min]="-3"
+        [max]="5"
+        [step]="1"
+        class="w-full"
+      ></p-slider>
+    </div>
+    <div class="y-values">
+      <div class="value-text">enter y</div>
+      <input type="text" pInputText [(ngModel)]="valueY" class="w-full" />
+      <p-slider
+        [(ngModel)]="valueY"
+        [min]="-3"
+        [max]="5"
+        [step]="1"
+        class="w-full"
+      ></p-slider>
+    </div>
+    <div class="r-values">
+      <div class="value-text">enter r</div>
+      <input type="text" pInputText [(ngModel)]="valueR" class="w-full" />
+      <p-slider
+        [(ngModel)]="valueR"
+        [min]="-3"
+        [max]="5"
+        [step]="1"
+        class="w-full"
+      ></p-slider>
+    </div>
+    <p-button
+      class="submit"
+      label="Submit"
+      icon="pi pi-check"
+      iconPos="right"
+      (click)="setCoordinates()"
+    ></p-button>
+  </div>
+  <div class="table">
+    <p-table
+      [value]="hitData"
+      [tableStyle]="{ 'min-width': '100%' }"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let key of tableColumns">{{ key }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td *ngFor="let key of tableColumns">{{ rowData[key] }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
